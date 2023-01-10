@@ -24,7 +24,7 @@ class TestBasics(unittest.TestCase):
     def test_find(self):
         """ Tests auto-connection/board detection. """
         input('Plug in Arduino board w/LED at pin 13, reset, then press enter')
-        from pyduino import Arduino
+        from arduinopy import Arduino
         board = None
         try:
             # This will trigger automatic port resolution.
@@ -42,7 +42,7 @@ class TestBasics(unittest.TestCase):
                 'Enter the port where the Arduino is connected, then press enter:')
             if not port:
                 print('You must enter a port.')
-        from pyduino import Arduino
+        from arduinopy import Arduino
         board = None
         try:
             board = Arduino(115200, port=port)

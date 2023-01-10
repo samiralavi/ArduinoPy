@@ -1,5 +1,5 @@
 {
-    "name": "Pyduino Dev",
+    "name": "ArduinoPy Dev",
     "context": "..",
     "dockerFile": "../containers/Dockerfile",
     "extensions": [

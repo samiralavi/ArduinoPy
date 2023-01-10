@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from pyduino import Arduino
+from arduinopy import Arduino
 import time
 
 

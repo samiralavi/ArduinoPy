@@ -56,7 +56,7 @@ LSBFIRST = "LSBFIRST"
 class ArduinoTestCase(unittest.TestCase):
 
     def setUp(self):
-        from pyduino.arduino import Arduino
+        from arduinopy.arduino import Arduino
         self.mock_serial = MockSerial(115200, '/dev/ttyACM0')
         self.board = Arduino(sr=self.mock_serial)
 
@@ -81,26 +81,26 @@ class TestArduino(ArduinoTestCase):
         self.board.close()
 
     def test_version(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         expected_version = "version"
         self.mock_serial.push_line(expected_version)
         self.assertEqual(self.board.version(), expected_version)
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('version'))
 
     def test_pinMode_input(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         self.board.pinMode(pin, INPUT)
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('pm', (-pin, )))
 
     def test_pinMode_output(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         self.board.pinMode(pin, OUTPUT)
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('pm', (pin, )))
 
     def test_pulseIn_low(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         expected_duration = 230
         self.mock_serial.push_line(expected_duration)
         pin = 9
@@ -108,7 +108,7 @@ class TestArduino(ArduinoTestCase):
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('pi', (-pin, )))
 
     def test_pulseIn_high(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         expected_duration = 230
         pin = 9
         self.mock_serial.push_line(expected_duration)
@@ -116,26 +116,26 @@ class TestArduino(ArduinoTestCase):
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('pi', (pin, )))
 
     def test_digitalRead(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         self.mock_serial.push_line(READ_LOW)
         self.assertEqual(self.board.digitalRead(pin), READ_LOW)
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('dr', (pin, )))
 
     def test_digitalWrite_low(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         self.board.digitalWrite(pin, LOW)
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('dw', (-pin, )))
 
     def test_digitalWrite_high(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         self.board.digitalWrite(pin, HIGH)
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('dw', (pin, )))
 
     def test_melody(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         notes = ["C4"]
         duration = 4
@@ -146,7 +146,7 @@ class TestArduino(ArduinoTestCase):
         self.assertEqual(self.mock_serial.output[1].decode('UTF-8'), build_cmd_str('nto', (pin, )))
 
     def test_shiftIn(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         dataPin = 2
         clockPin = 3
         pinOrder = MSBFIRST
@@ -161,7 +161,7 @@ class TestArduino(ArduinoTestCase):
                          )))
 
     def test_shiftOut(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         dataPin = 2
         clockPin = 3
         pinOrder = MSBFIRST
@@ -171,7 +171,7 @@ class TestArduino(ArduinoTestCase):
                          build_cmd_str('so', (dataPin, clockPin, pinOrder, value)))
 
     def test_analogRead(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         expected = 1023
         self.mock_serial.push_line(expected)
@@ -179,7 +179,7 @@ class TestArduino(ArduinoTestCase):
         self.assertEqual(self.mock_serial.output[0].decode('UTF-8'), build_cmd_str('ar', (pin, )))
 
     def test_analogWrite(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 9
         value = 255
         self.board.analogWrite(pin, value)
@@ -190,7 +190,7 @@ class TestArduino(ArduinoTestCase):
 class TestServos(ArduinoTestCase):
 
     def test_attach(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 10
         position = 0
         self.mock_serial.push_line(position)
@@ -201,7 +201,7 @@ class TestServos(ArduinoTestCase):
                          build_cmd_str('sva', (pin, servo_min, servo_max)))
 
     def test_detach(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 10
         position = 0
         # Attach first.
@@ -213,7 +213,7 @@ class TestServos(ArduinoTestCase):
                          build_cmd_str('svd', (position, )))
 
     def test_write(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 10
         position = 0
         angle = 90
@@ -226,7 +226,7 @@ class TestServos(ArduinoTestCase):
                          build_cmd_str("svw", (position, angle)))
 
     def test_writeMicroseconds(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 10
         position = 0
         microseconds = 1500
@@ -239,7 +239,7 @@ class TestServos(ArduinoTestCase):
                          build_cmd_str("svwm", (position, microseconds)))
 
     def test_read(self):
-        from pyduino.arduino import build_cmd_str
+        from arduinopy.arduino import build_cmd_str
         pin = 10
         position = 0
         angle = 90
