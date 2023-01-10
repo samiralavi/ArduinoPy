@@ -1,0 +1,22 @@
+{
+    "name": "Pyduino Dev",
+    "context": "..",
+    "dockerFile": "../containers/Dockerfile",
+    "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "twxs.cmake",
+        "streetsidesoftware.code-spell-checker",
+        "redhat.vscode-yaml",
+        "mhutchie.git-graph",
+        "zxh404.vscode-proto3"
+    ],
+    "remoteUser": "dev_user",
+    "runArgs": [
+        "--net",
+        "host"
+    ],
+    "postCreateCommand": "poetry install"
+}

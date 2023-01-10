@@ -1,8 +1,8 @@
-# Arduino-Python3 Command API
+# Pyduino Command API
 
-This API is forked from the original [Python Arduino Command API](https://github.com/thearn/Python-Arduino-Command-API) to add support for Python 3.
+This API is forked from the original [Arduino-Python3 Command API](https://github.com/mkals/Arduino-Python3-Command-API) to give it a new life with new features.
 
-The Arduino-Python3 Command API is a lightweight Python library for
+Pyduino is a lightweight Python library for
 communicating with [Arduino microcontroller boards](http://www.arduino.cc/) from a connected computer using
 standard serial IO, either over a physical wire
 or wirelessly. It is written using a custom protocol, similar to [Firmata](http://firmata.org/wiki/Main_Page).
@@ -22,7 +22,7 @@ as possible to their Arduino programming language counterparts
  in 1 second intervals
 """
 
-from Arduino import Arduino
+from pyduino import Arduino
 import time
 
 board = Arduino() # plugged in via USB, serial com at rate 115200
@@ -36,12 +36,12 @@ while True:
 ```
 
 ## Requirements:
-- [Python](http://python.org/) 3.7 tested on Windows and macOS.
-- [pyserial](http://pyserial.sourceforge.net/) 2.6 or higher
-- Any [Arduino compatible microcontroller](https://www.sparkfun.com/categories/242) with at least 14KB of flash memory
+- [Python](http://python.org/) 3.8.
+- [pyserial](http://pyserial.sourceforge.net/) 3.5 or higher.
+- Any [Arduino compatible microcontroller](https://www.sparkfun.com/categories/242) with at least 14KB of flash memory.
 
 ## Installation:
-Either run `pip install arduino-python3` from a command line, or run `python setup.py
+Either run `pip install pyduino` from a command line, or run `python setup.py
 build install` from the source directory to install this library.
 
 ## Setup:
@@ -50,7 +50,7 @@ build install` from the source directory to install this library.
 2. Load the `prototype.ino` sketch onto your Arduino board, using the Arduino IDE.
 3. Set up some kind of serial I/O communication between the Arduino board and your computer (via physical USB cable,
 Bluetooth, xbee, etc. + associated drivers)
-4. Add `from Arduino import Arduino` into your python script to communicate with your Arduino
+4. Add `from pyduino import Arduino` into your python script to communicate with your Arduino
 
 For a collection of examples, see `examples.py`. This file contains methods which replicate
 the functionality of many Arduino demo sketches.

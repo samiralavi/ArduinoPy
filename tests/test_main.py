@@ -1,7 +1,6 @@
 import logging
 import unittest
 import time
-
 """
 A collection of some basic tests for the Arduino library.
 
@@ -10,7 +9,6 @@ connecting and issuing commands to a live Arduino, hosting any hardware
 required to test a particular function. But a core of basic communication tests
 should at least be maintained here.
 """
-
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -25,9 +23,8 @@ class TestBasics(unittest.TestCase):
 
     def test_find(self):
         """ Tests auto-connection/board detection. """
-        input(
-            'Plug in Arduino board w/LED at pin 13, reset, then press enter')
-        from Arduino import Arduino
+        input('Plug in Arduino board w/LED at pin 13, reset, then press enter')
+        from pyduino import Arduino
         board = None
         try:
             # This will trigger automatic port resolution.
@@ -45,13 +42,14 @@ class TestBasics(unittest.TestCase):
                 'Enter the port where the Arduino is connected, then press enter:')
             if not port:
                 print('You must enter a port.')
-        from Arduino import Arduino
+        from pyduino import Arduino
         board = None
         try:
             board = Arduino(115200, port=port)
         finally:
             if board:
                 board.close()
+
 
 if __name__ == '__main__':
     unittest.main()

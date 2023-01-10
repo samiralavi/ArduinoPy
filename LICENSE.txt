@@ -1,3 +1,4 @@
+Copyright (c) 2022 Seyed Amir Alavi <seydamir@gmail.com>
 Copyright (c) 2012-2013 Tristan A. Hearn <tristanhearn@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
